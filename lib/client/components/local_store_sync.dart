@@ -4,8 +4,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:html';
 
-import 'package:io_2014_contacts_demo/src/contact.dart';
-import 'package:io_2014_contacts_demo/src/sync.dart';
+import 'package:io_2014_contacts_demo/client/src/contact.dart';
+import 'package:io_2014_contacts_demo/client/src/sync.dart';
 import 'package:polymer/polymer.dart';
 import 'package:redstone_mapper/mapper.dart';
 

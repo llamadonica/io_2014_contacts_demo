@@ -1,10 +1,11 @@
 library contacts.contact;
 
 import "package:redstone_mapper/mapper.dart";
+import "package:redstone_mapper_mongo/metadata.dart";
 
 class Contact {
 
-  @Field() int id;
+  @Id() String id;
   @Field() String name;
   @Field() String notes;
   @Field() bool important;

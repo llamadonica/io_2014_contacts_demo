@@ -11,13 +11,13 @@
 
     <link rel='stylesheet' href='index.css'>
     <link rel="import" href="packages/paper_elements/src/font-roboto/roboto.html">
-    <link rel="import" href="packages/io_2014_contacts_demo/components/app_element.html">
-    <link rel="import" href="packages/io_2014_contacts_demo/components/local_store_sync.html">
+    <link rel="import" href="packages/io_2014_contacts_demo/client/components/app_element.html">
+    <link rel="import" href="packages/io_2014_contacts_demo/client/components/remote_store_sync.html">
 
   </head>
   <body unresolved>
 
-    <local-store-sync id='sync'></local-store-sync>
+    <remote-store-sync id='sync'></remote-store-sync>
     <app-element syncId='sync'></app-element>
 
     <script type="application/dart">export 'index.dart';</script>
