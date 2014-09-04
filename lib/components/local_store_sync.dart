@@ -7,6 +7,7 @@ import 'dart:html';
 import 'package:io_2014_contacts_demo/src/contact.dart';
 import 'package:io_2014_contacts_demo/src/sync.dart';
 import 'package:polymer/polymer.dart';
+import 'package:redstone_mapper/mapper.dart';
 
 const _JSON_ENCODER = const JsonEncoder.withIndent('  ');
 
@@ -46,14 +47,14 @@ class LocalStoreSync extends PolymerElement implements Sync {
 
     if (json == null) json = '[]';
 
-    var items = JSON.decode(json) as List;
+    var items = decode(JSON.decode(json), Contact);
 
     _cache.clear();
-    _cache.addAll(items.map((j) => new Contact.fromJson(j)));
+    _cache.addAll(items);
   }
 
   void _updateStore() {
-    var jsonList = _cache.map((c) => c.toJson()).toList();
+    var jsonList = encode(_cache);
 
     _storage[_CONTACT_KEY] = _JSON_ENCODER.convert(jsonList);
   }
