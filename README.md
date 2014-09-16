@@ -1,4 +1,4 @@
-This example is a fork of the [io_2014_contacts_demo] sample, modified to use the 
+This example is a fork of the [io_2014_contacts_demo](https://github.com/kevmoo/io_2014_contacts_demo) sample, modified to use the 
 [Redstone.dart](http://redstonedart.org) framework and plugins. Instead of saving the data in the
 user's browser, this sample uses a webservice built with Redstone, which store the data in a MongoDb instance.
 
