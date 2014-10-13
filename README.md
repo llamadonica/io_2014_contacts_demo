@@ -21,14 +21,13 @@ a [zip file](https://github.com/luizmineo/io_2014_contacts_demo/archive/master.z
 $ git clone https://github.com/luizmineo/io_2014_contacts_demo.git
 ```
 
-To build the code, use the `tool/build.dart` script. Be sure to set the `DART_SDK` environment variable before
-invoking it:
+To build the code, use the `pub run` command to invoke the [Grinder](https://pub.dartlang.org/packages/grinder) build system:
 
 ```
-$ dart tool/build.dart all
+$ pub run grinder:grind all
 ```
 
-The script will produce a `build` directory, which can be deployed on your server. To test it, you can execute 
+It will invoke the `tool/grind.dart` script, which will produce a `build` directory that can be deployed on your server. To test it, you can execute 
 the `bin/server.dart` script from the `build` folder:
  
 ```
