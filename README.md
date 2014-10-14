@@ -6,7 +6,7 @@ user's browser, this sample uses a webservice built with Redstone, which store t
 
 Before running this example, be sure to have a [MongoDB](http://www.mongodb.org/) instance available in your environment. 
 By default, the application will try to connect to a local MongoDB instance, and create/use a database named 
-"contacts". Take a look at the `bin/server.dart` file to change these settings.
+"contacts".
 
 If you are using Ubuntu, or other Debian based linux distribution, you can just do the following to install MongoDB:
 
@@ -34,8 +34,10 @@ the `bin/server.dart` script from the `build` folder:
 $ cd build
 $ dart bin/server.dart
 ```
+
+**Note:** The server accepts some configuration parameters. Run `dart bin/server.dart --help` for details.
  
-Now open your browser and go to http://localhost:8080/
+Now open your browser and go to [http://localhost:8080/](http://localhost:8080/)
  
 ### Opening in Dart Editor
  
@@ -51,6 +53,7 @@ To create the server launcher:
 * Create a new command-line launch
 * Set *Dart Script* to *bin/server.dart*
 * Set *Working Directory* to the project path
+* Set *Script arguments* to *--dartium*
 * Click on the *Apply* button
 
 To create the client launcher:
@@ -64,9 +67,45 @@ To create the client launcher:
 
 To test the application, start the server, and then the client.
 
-## Deploy to Keroku
+## Deploying to Heroku
 
-heroku create -s cedar-14
-heroku addons:add mongohq
-heroku config:set DART_SDK_URL=https://storage.googleapis.com/dart-archive/channels/dev/release/41004/sdk/dartsdk-linux-x64-release.zip
-heroku config:add BUILDPACK_URL=https://github.com/igrigorik/heroku-buildpack-dart.git
+This application can easily be deployed to [Heroku](https://www.heroku.com/), using the new 
+[cedar-14](https://blog.heroku.com/archives/2014/8/19/cedar-14-public-beta) stack, 
+and the [Dart buildpack](https://github.com/igrigorik/heroku-buildpack-dart).
+
+If you already have the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed, just run the following commands
+from the application root folder.
+
+Create a Heroku application:
+
+```
+$ heroku create -s cedar-14
+```
+
+Configure a Dart SDK archive. The following link points to Dart SDK 1.7-dev.4.5, but you can get another version 
+[here](https://www.dartlang.org/tools/download_archive/) (be sure to get a Linux 64-bit build):
+
+```
+$ heroku config:set DART_SDK_URL=https://storage.googleapis.com/dart-archive/channels/dev/release/41004/sdk/dartsdk-linux-x64-release.zip
+```
+
+Configure the Dart buildpack:
+
+```
+$ heroku config:add BUILDPACK_URL=https://github.com/igrigorik/heroku-buildpack-dart.git
+```
+
+Add a MongoDB database, with the [MongoHQ add-on](https://addons.heroku.com/mongohq):
+
+```
+$ heroku addons:add mongohq
+```
+
+And finally, push the application to Heroku:
+
+```
+$ git push heroku master
+```
+
+Heroku will build the application with `pub build`, and start the server with the command specified
+in the [Procfile] file.
