@@ -63,3 +63,10 @@ To create the client launcher:
 * Click on the *Apply* button
 
 To test the application, start the server, and then the client.
+
+## Deploy to Keroku
+
+heroku create -s cedar-14
+heroku addons:add mongohq
+heroku config:set DART_SDK_URL=https://storage.googleapis.com/dart-archive/channels/dev/release/41004/sdk/dartsdk-linux-x64-release.zip
+heroku config:add BUILDPACK_URL=https://github.com/igrigorik/heroku-buildpack-dart.git
