@@ -108,4 +108,4 @@ $ git push heroku master
 ```
 
 Heroku will build the application with `pub build`, and start the server with the command specified
-in the [[Procfile]] file.
+in the [Procfile](Procfile) file.
