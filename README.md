@@ -95,6 +95,12 @@ Configure the Dart buildpack:
 $ heroku config:add BUILDPACK_URL=https://github.com/igrigorik/heroku-buildpack-dart.git
 ```
 
+Configure the path to the client code:
+
+```
+$ heroku config:set WEB_FOLDER=build/web
+```
+
 Add a MongoDB database, with the [MongoHQ add-on](https://addons.heroku.com/mongohq):
 
 ```
