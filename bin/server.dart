@@ -16,8 +16,8 @@ main(List<String> args) {
   //check environment variables
   var port = _getConfig("PORT", "8080");
   var dbUrl = _getConfig("MONGOHQ_URL", "mongodb://localhost/contacts");
-  var supportDartium = false;
-  var web;
+  var web = _getConfig("WEB_FOLDER", "web");
+  var supportDartium = _getConfig("SUPPORT_DARTIUM", "false");
 
   //configure server parameters
   var parser = new ArgParser();
@@ -25,9 +25,9 @@ main(List<String> args) {
       help: "The port number to use for the server");
   parser.addOption("db", defaultsTo: dbUrl,
       help: "MongoDB URL");
-  parser.addFlag("dartium", defaultsTo: false,
+  parser.addFlag("dartium", defaultsTo: supportDartium == "true",
       help: "Enable Dartium support (not safe for production environment)");
-  parser.addOption("web", defaultsTo: "web",
+  parser.addOption("web", defaultsTo: web,
       help: "Path to the web folder");
   parser.addFlag("help", negatable: false, defaultsTo: false, hide: true);
 
