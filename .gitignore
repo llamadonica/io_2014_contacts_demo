@@ -1,5 +1,4 @@
 **/packages
-pubspec.lock
 .pub
 .idea
 build
