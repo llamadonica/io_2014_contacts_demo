@@ -4,9 +4,11 @@ import 'package:observe/observe.dart';
 import 'contact.dart';
 import 'sync.dart';
 
-class App {
+import "package:polymer/polymer.dart";
+
+class App extends JsProxy {
   final Sync _sync;
-  final ObservableList<Contact> contacts = new ObservableList<Contact>();
+  final List<Contact> contacts = new List<Contact>();
 
   bool _loading = false;
 
@@ -23,7 +25,7 @@ class App {
     assert(!contacts.contains(contact));
 
     // TODO: error handling
-    _sync.add(contact).then((savedContact) {
+    _sync.addContact(contact).then((savedContact) {
       contacts.add(contact);
     });
   }

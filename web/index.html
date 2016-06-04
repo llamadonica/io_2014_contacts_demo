@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-    <link rel='stylesheet' href='index.css'>
-    <link rel="import" href="packages/paper_elements/src/font-roboto/roboto.html">
-    <link rel="import" href="packages/io_2014_contacts_demo/client/components/app_element.html">
-    <link rel="import" href="packages/io_2014_contacts_demo/client/components/remote_store_sync.html">
+    <script src="packages/web_components/webcomponents-lite.min.js"></script>
+    <script src="packages/web_components/dart_support.js"></script>
+
+    <link rel='stylesheet' href='styles.css'>
 
   </head>
   <body unresolved>
-
     <remote-store-sync id='sync'></remote-store-sync>
-    <app-element syncId='sync'></app-element>
-
-    <script type="application/dart">export 'index.dart';</script>
+    <template-factory id="injector"></template-factory>
+    <app-element sync-id='sync'></app-element>
+    <script type="application/dart" src="main.dart"></script>
+    <script src="packages/browser/dart.js"></script>
 
   </body>
 </html>

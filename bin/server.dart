@@ -1,13 +1,13 @@
 import "dart:io";
 
-import "package:redstone/server.dart" as app;
+import "package:redstone/redstone.dart" as app;
 import "package:shelf_static/shelf_static.dart";
 import "package:redstone_mapper/plugin.dart";
-import "package:redstone_mapper_mongo/manager.dart";
+import 'package:io_2016_contacts_demo/server/services/couchdb_service.dart';
 import "package:args/args.dart";
 
 @app.Install(urlPrefix: "/services")
-import "package:io_2014_contacts_demo/server/services/contact_service.dart";
+import "package:io_2016_contacts_demo/server/services/contact_service.dart";
 
 main(List<String> args) {
 
@@ -15,8 +15,8 @@ main(List<String> args) {
 
   //check environment variables
   var port = _getConfig("PORT", "8080");
-  var dbUrl = _getConfig("MONGOHQ_URL", "mongodb://localhost/contacts");
-  var web = _getConfig("WEB_FOLDER", "web");
+  var dbUrl = _getConfig("MONGOHQ_URL", "http://localhost:5984/contacts");
+  var web = _getConfig("WEB_FOLDER", "build/web");
   var supportDartium = _getConfig("SUPPORT_DARTIUM", "false");
 
   //configure server parameters
@@ -45,13 +45,13 @@ main(List<String> args) {
   web = results["web"];
 
   //start the database manager
-  MongoDbManager dbManager = new MongoDbManager(dbUrl);
+  CouchDbManagerExperimental dbManager = new CouchDbManagerExperimental(dbUrl);
   app.addPlugin(getMapperPlugin(dbManager, "/services/.+"));
 
   //start the server
   app.setShelfHandler(createStaticHandler(web,
                       defaultDocument: "index.html",
-                      serveFilesOutsidePath: supportDartium));
+                      serveFilesOutsidePath: true));
   app.start(port: int.parse(port));
 }
 
@@ -62,4 +62,3 @@ _getConfig(String name, [defaultValue]) {
   }
   return value;
 }
-

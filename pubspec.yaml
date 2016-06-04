@@ -1,20 +1,41 @@
-name: io_2014_contacts_demo
-version: 0.0.2+1
-author: Kevin Moore <kevmoo+github@google.com>
-description: Dart, Polymer, Paper Sample App from Google IO 2014
-homepage: https://github.com/kevmoo/io_2014_contacts_demo
+name: 'io_2016_contacts_demo'
+version: 0.0.1
+description: A web app built using polymer.dart.
+#author: Your Name <email@example.com>
+#homepage: https://www.example.com
+
 environment:
- sdk: '>=1.7.0-dev.4.5 <2.0.0'
+  sdk: '>=1.9.0 <2.0.0'
+
 dependencies:
-  paper_elements: '>=0.5.0 <0.6.0'
-  polymer: '>=0.15.1 <0.16.0'
-  redstone: any
-  redstone_mapper: any
-  redstone_mapper_mongo: any
+  analyzer: "0.27.1"
+  browser: ^0.10.0
+  polymer_elements: ^1.0.0-rc.8
+  polymer: ^1.0.0-rc.15
+  web_components: ^0.12.0
+  redstone:
+    git: https://github.com/redstone-dart/redstone.git
+  redstone_mapper:
+    git: https://github.com/redstone-dart/redstone_mapper.git
+  redstone_mapper_mongo:
+    git: https://github.com/redstone-dart/redstone_mapper_mongo.git
+  jsproxyize:
+    git: https://github.com/llamadonica/jsproxyize.git
   shelf_static: any
   grinder: any
+  observe: any
+  json_stream_parser:
+    git: https://github.com/llamadonica/dart-json-stream-parser.git
+  uuid: any
+
 transformers:
-- redstone_mapper
+- jsproxyize
 - polymer:
-    entry_points:
-    - web/index.html
+    entry_points: web/index.html
+- redstone_mapper:
+    $include: web/main.dart
+- $dart2js:
+    minify: false
+    commandLineOptions:
+    - --trust-type-annotations
+    - --trust-primitives

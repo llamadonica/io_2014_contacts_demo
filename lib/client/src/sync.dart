@@ -9,7 +9,7 @@ abstract class Sync {
 
   Future<List<Contact>> load();
 
-  Future<Contact> add(Contact contact);
+  Future<Contact> addContact(Contact contact);
 
   Future<bool> delete(Contact contact);
 }
@@ -27,7 +27,7 @@ class _MemorySync implements Sync {
     return new Future.value(_contacts.toList());
   }
 
-  Future<Contact> add(Contact contact) {
+  Future<Contact> addContact(Contact contact) {
     assert(contact != null);
     _contacts.add(contact);
     return new Future.value(contact);

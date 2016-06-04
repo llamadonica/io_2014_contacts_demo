@@ -1,17 +1,19 @@
+@HtmlImport('local_store_sync.html')
 library contacts.local_store_sync;
 
 import 'dart:async';
 import 'dart:convert';
 import 'dart:html';
 
-import 'package:io_2014_contacts_demo/client/src/contact.dart';
-import 'package:io_2014_contacts_demo/client/src/sync.dart';
+import 'package:web_components/web_components.dart';
+import 'package:io_2016_contacts_demo/client/src/contact.dart';
+import 'package:io_2016_contacts_demo/client/src/sync.dart';
 import 'package:polymer/polymer.dart';
 import 'package:redstone_mapper/mapper.dart';
 
 const _JSON_ENCODER = const JsonEncoder.withIndent('  ');
 
-@CustomTag('local-store-sync')
+@PolymerRegister('local-store-sync')
 class LocalStoreSync extends PolymerElement implements Sync {
   static const _CONTACT_KEY = 'contacts_key_v001';
   final Storage _storage;
@@ -28,7 +30,7 @@ class LocalStoreSync extends PolymerElement implements Sync {
     return new Future.value(_cache.toList());
   }
 
-  Future<Contact> add(Contact contact) {
+  Future<Contact> addContact(Contact contact) {
     _cache.add(contact);
     _updateStore();
     return new Future.value(contact);

@@ -1,15 +1,18 @@
 library contacts.contact;
 
 import "package:redstone_mapper/mapper.dart";
-import "package:redstone_mapper_mongo/metadata.dart";
+import "package:io_2016_contacts_demo/server/services/metadata.dart";
 
-class Contact {
+import "package:jsproxyize/jsproxyize.dart";
 
-  @Id() String id;
-  @Field() String name;
-  @Field() String notes;
-  @Field() bool important;
+@jsProxyize class Contact {
+
+  @PolymerReflectable() @Id() String id;
+  @PolymerReflectable() @Rev() String rev;
+  @PolymerReflectable() @Field() String name;
+  @PolymerReflectable() @Field() String notes;
+  @PolymerReflectable() @Field() bool important;
+  @PolymerReflectable() @Field() String get type => 'contact';
 
   Contact([this.name, this.notes, this.important, this.id]);
-
 }
